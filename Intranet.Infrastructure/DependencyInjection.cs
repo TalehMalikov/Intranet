@@ -4,12 +4,7 @@ using Intranet.Infrastructure.Persistance;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intranet.Infrastructure
 {
@@ -19,7 +14,7 @@ namespace Intranet.Infrastructure
         {
             services.AddTransient<IRepository<ServiceTemporary>, ServiceTemporaryRepository>();
 
-            services.AddTransient<IDbConnection>(db => new NpgsqlConnection(configuration.GetConnectionString("DefautConnectionString")));
+            services.AddTransient<IDbConnection>(db => new NpgsqlConnection(configuration.GetConnectionString("DefaultConnectionString")));
         }
     }
 }

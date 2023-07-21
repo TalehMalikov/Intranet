@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using Intranet.Domain.Entities.Statistics;
 using Intranet.Domain.Repository;
+using Newtonsoft.Json;
 using System.Data;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 
 namespace Intranet.Infrastructure.Persistance
 {
@@ -30,8 +33,8 @@ namespace Intranet.Infrastructure.Persistance
 
         public async Task<ServiceTemporary> InsertAsync(ServiceTemporary serviceTemporary)
         {
-            var query = $"INSERT INTO statistics.services_temporary (hospital_id,stationary_service,ambulatory_service,total_service,comprasion,session_id,is_published,insert_date,insert_user,update_date,update_user) " +
-                $"VALUES ('{serviceTemporary.HospitalId}', '{serviceTemporary.StationaryService}','{serviceTemporary.AmbulatoryService}', '{serviceTemporary.TotalService}','{serviceTemporary.Comprasion}','{serviceTemporary.SessionId},'{serviceTemporary.IsPublished}','{serviceTemporary.InsertDate}','{serviceTemporary.InsertUser}','{serviceTemporary.UpdateDate}','{serviceTemporary.UpdateUser}')";
+            var query = $"INSERT INTO statistics.services_temporary (hospital_id,stationary_service,ambulatory_service,total_service,comprasion,session_id,is_published,insert_user,update_user) " +
+                $"VALUES ({serviceTemporary.HospitalId}, {serviceTemporary.StationaryService},{serviceTemporary.AmbulatoryService}, {serviceTemporary.TotalService},{serviceTemporary.Comprasion},'{serviceTemporary.SessionId}',{serviceTemporary.IsPublished},'{serviceTemporary.InsertUser}','{serviceTemporary.UpdateUser}')";
             
             await _db.ExecuteAsync(query);
             return serviceTemporary;
