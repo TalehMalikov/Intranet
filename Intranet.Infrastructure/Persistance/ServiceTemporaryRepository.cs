@@ -33,6 +33,7 @@ namespace Intranet.Infrastructure.Persistance
 
         public async Task<ServiceTemporary> InsertAsync(ServiceTemporary serviceTemporary)
         {
+
             var query = $"INSERT INTO statistics.services_temporary (hospital_id,stationary_service,ambulatory_service,total_service,comprasion,session_id,is_published,insert_user,update_user) " +
                 $"VALUES ({serviceTemporary.HospitalId}, {serviceTemporary.StationaryService},{serviceTemporary.AmbulatoryService}, {serviceTemporary.TotalService},{serviceTemporary.Comprasion},'{serviceTemporary.SessionId}',{serviceTemporary.IsPublished},'{serviceTemporary.InsertUser}','{serviceTemporary.UpdateUser}')";
             
